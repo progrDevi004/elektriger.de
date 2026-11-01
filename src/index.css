@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted Inter (latin + latin-ext) – keine Google-Fonts-Kette im kritischen Pfad */
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 220 15% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 10%;
+
+    --primary: 220 15% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 10% 93%;
+    --secondary-foreground: 220 15% 10%;
+
+    --muted: 220 10% 93%;
+    --muted-foreground: 220 10% 15%;
+
+    --accent: 22 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 88%;
+    --input: 220 10% 88%;
+    --ring: 22 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Brand colors – Elektiger Orange (Token-Namen teal/green bleiben für bestehendes CSS) */
+    --teal: 22 100% 50%;
+    --teal-dark: 16 100% 38%;
+    --green: 18 100% 42%;
+    --green-light: 24 100% 48%;
+
+    /* Accent colors */
+    --indigo: 234 89% 64%;
+    --orange: 24 95% 54%;
+  }
+
+  .dark {
+    --background: 220 15% 4%;
+    --foreground: 0 0% 90%;
+
+    --card: 220 10% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 15% 4%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 220 15% 4%;
+
+    --secondary: 220 10% 17%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 10% 17%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 22 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 17%;
+    --input: 220 10% 17%;
+    --ring: 22 100% 55%;
+
+    /* Brand colors – Elektiger Orange */
+    --teal: 22 100% 55%;
+    --teal-dark: 16 100% 42%;
+    --green: 18 100% 46%;
+    --green-light: 24 100% 52%;
+
+    /* Accent colors */
+    --indigo: 234 89% 74%;
+    --orange: 24 95% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter Variable", Inter, system-ui, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-white/20 text-white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(220 10% 26%);
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .glass-nav {
+    background: rgba(9, 9, 11, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .text-gradient {
+    background: linear-gradient(to bottom right, hsl(22 100% 55%), hsl(16 100% 38%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-silver {
+    background: linear-gradient(135deg, hsl(220 15% 20%) 0%, hsl(220 10% 35%) 40%, hsl(220 15% 20%) 60%, hsl(220 10% 30%) 80%, hsl(220 15% 20%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .text-gradient-silver {
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 75%) 40%, hsl(0 0% 100%) 60%, hsl(0 0% 80%) 80%, hsl(0 0% 100%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    border-color: hsl(var(--border));
+    background: hsl(var(--card) / 0.5);
+  }
+
+  .dark .card-hover:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.2;
+  }
+}

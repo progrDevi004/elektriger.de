@@ -1,0 +1,2 @@
+ALTER TABLE public.contact_submissions DROP CONSTRAINT IF EXISTS contact_submissions_user_type_check;
+ALTER TABLE public.contact_submissions ADD CONSTRAINT contact_submissions_user_type_check CHECK (user_type = ANY (ARRAY['privat'::text, 'gewerbe'::text]));
